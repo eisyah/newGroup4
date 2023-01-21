@@ -3,7 +3,7 @@ errors:
 1///
 cannot login, app crashes immediately. Suspected that database is not setup correctly.
 error code is 503: service unavailable.
-
+f
 to do:
 - check if database is setup correctly
     (in "setup API", Tick Auth button)
