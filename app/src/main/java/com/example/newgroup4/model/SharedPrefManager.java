@@ -8,9 +8,9 @@ import com.example.newgroup4.LoginActivity;
 
 public class SharedPrefManager {
     //the constants
-    private static final String SHARED_PREF_NAME = "AppointmentSharedPref";
+    private static final String SHARED_PREF_NAME = "bookstoresharedpref";
     private static final String KEY_ID = "keyid";
-    private static final String KEY_NAME = "keyname";
+    private static final String KEY_USERNAME = "keyusername";
     private static final String KEY_EMAIL = "keyemail";
     private static final String KEY_TOKEN = "keytoken";
     private static final String KEY_ROLE = "keyrole";
@@ -38,8 +38,8 @@ public class SharedPrefManager {
     public void userLogin(User user) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(KEY_ID, user.getUserID());
-        editor.putString(KEY_NAME, user.getName());
+        editor.putInt(KEY_ID, user.getId());
+        editor.putString(KEY_USERNAME, user.getUsername());
         editor.putString(KEY_EMAIL, user.getEmail());
         editor.putString(KEY_TOKEN, user.getToken());
         editor.putString(KEY_ROLE, user.getRole());
@@ -53,7 +53,7 @@ public class SharedPrefManager {
 
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_NAME, null) != null;
+        return sharedPreferences.getString(KEY_USERNAME, null) != null;
     }
 
     /**
@@ -63,8 +63,8 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
         User user = new User();
-        user.setUserID(sharedPreferences.getInt(KEY_ID, -1));
-        user.setName(sharedPreferences.getString(KEY_NAME, null));
+        user.setId(sharedPreferences.getInt(KEY_ID, -1));
+        user.setUsername(sharedPreferences.getString(KEY_USERNAME, null));
         user.setEmail(sharedPreferences.getString(KEY_EMAIL, null));
         user.setToken(sharedPreferences.getString(KEY_TOKEN, null));
         user.setRole(sharedPreferences.getString(KEY_ROLE, null));
