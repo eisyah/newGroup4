@@ -119,9 +119,23 @@ public class LoginActivity extends AppCompatActivity {
                         //store value in shared preference
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
-                        //forward to MainActivity
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+
+                        // redirect to respective home pages based on roles
+                        if (user.getRole().equals("lect")) {
+                            //forward to LecturerHome
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), LecturerHome.class));
+                        } else if (user.getRole().equals("stud")) {
+                            //forward to StudentHome
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), StudentHome.class));
+                        }
+                        else {
+                            //forward to MainActivity
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        }
                     }
                 }
                 else if (response.errorBody() != null){

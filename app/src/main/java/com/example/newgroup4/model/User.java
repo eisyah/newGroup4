@@ -11,7 +11,7 @@ public class User {
     private String lease;
     private String role;
     private int is_active;
-    private String secret;
+
 
     public int getId() {
         return id;
@@ -77,13 +77,6 @@ public class User {
         this.is_active = is_active;
     }
 
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
 
 
 

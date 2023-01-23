@@ -12,3 +12,14 @@ to do:
 - create proper error message handling
 
 p/s: login works using the old database, but is unable to connect with new one.
+
+---SOLVED---
+
+2///
+
+
+
+foot notes:
+for testing both lecturers and students, use the following credentials:
+lecturers: 2020123456 OR testLect@gmail.com
+students: 2020846974 OR testStud@gmail.com

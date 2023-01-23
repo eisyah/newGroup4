@@ -11,13 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.newgroup4.model.SharedPrefManager;
 import com.example.newgroup4.model.User;
 
-public class StudentHome extends AppCompatActivity {
-
+public class LecturerHome extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_home);
+        setContentView(R.layout.activity_lecturer_home);
 
         // get user info from SharedPreferences
         User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
@@ -42,6 +41,5 @@ public class StudentHome extends AppCompatActivity {
 
             }
         });
-
     }
 }
