@@ -39,7 +39,24 @@ public class LoginActivity extends AppCompatActivity {
         //if user is already logged in we will directly start the main activity
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+
+            User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
+
+            if (user.getRole().equals("lect")) {
+                //forward to LecturerHome
+                finish();
+                startActivity(new Intent(getApplicationContext(), LecturerHome.class));
+            } else if (user.getRole().equals("stud")) {
+                //forward to StudentHome
+                finish();
+                startActivity(new Intent(getApplicationContext(), StudentHome.class));
+            }
+            else {
+                //forward to MainActivity
+                finish();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+
             return;
         }
 
