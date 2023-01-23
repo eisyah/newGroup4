@@ -23,3 +23,5 @@ foot notes:
 for testing both lecturers and students, use the following credentials:
 lecturers: 2020123456 OR testLect@gmail.com
 students: 2020846974 OR testStud@gmail.com
+
+passwords for both : test
