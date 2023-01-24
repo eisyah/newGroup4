@@ -32,6 +32,12 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecturer_home);
 
+        initWidgets();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            selectedDate = LocalDate.now();
+        }
+        setMonthView();
+
         // get user info from SharedPreferences
         User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
 
@@ -139,6 +145,8 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         setMonthView();
     }
 
+
+    //onclick kalau tekan kotak date
     @Override
     public void onItemClick(int position, String dayText) {
         if (!dayText.equals("")) {
