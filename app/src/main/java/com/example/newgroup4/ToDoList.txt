@@ -1,6 +1,6 @@
 errors:
 
-1///
+1/// (---SOLVED---)
 cannot login, app crashes immediately. Suspected that database is not setup correctly.
 error code is 503: service unavailable.
 
@@ -13,7 +13,6 @@ to do:
 
 p/s: login works using the old database, but is unable to connect with new one.
 
----SOLVED---
 
 2///
 
