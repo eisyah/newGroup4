@@ -10,6 +10,11 @@ public class ApiUtils {
         return RetrofitClient.getClient(BASE_URL).create(UserService.class);
     }
 
+    // return ApptService
+    public static ApptService getAppService(){
+        return RetrofitClient.getClient(BASE_URL).create(ApptService.class);
+    }
+
 }
 
 
