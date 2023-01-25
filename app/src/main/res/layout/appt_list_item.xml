@@ -8,9 +8,6 @@
     android:layout_marginBottom="2dp"
     >
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tvLectName"
@@ -31,5 +28,5 @@
             android:textStyle="bold|italic" />
 
 
-    </GridLayout>
+
 </RelativeLayout>
