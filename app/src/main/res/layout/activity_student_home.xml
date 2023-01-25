@@ -7,7 +7,7 @@
     tools:context=".StudentHome">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lectList"
+        android:id="@+id/apptList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
