@@ -1,14 +1,11 @@
 package com.example.newgroup4.model;
 
-import java.sql.Date;
-import java.sql.Time;
-
 public class Appointment {
     private int apptID;
     private String studID;
     private String lectID;
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
     private String reason;
     private String status;
 
@@ -38,19 +35,19 @@ public class Appointment {
         this.lectID = lectID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

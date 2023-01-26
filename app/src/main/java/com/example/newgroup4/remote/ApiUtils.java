@@ -15,6 +15,11 @@ public class ApiUtils {
         return RetrofitClient.getClient(BASE_URL).create(ApptService.class);
     }
 
+    //return LectService instance
+    public static LectService getLectService() {
+        return RetrofitClient.getClient(BASE_URL).create(LectService.class);
+    }
+
 }
 
 

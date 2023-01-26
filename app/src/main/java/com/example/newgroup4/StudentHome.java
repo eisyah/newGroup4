@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newgroup4.adapter.ApptAdapter;
-import com.example.newgroup4.model.Appointment;
+import com.example.newgroup4.model.ApptxLectName;
 import com.example.newgroup4.model.SharedPrefManager;
 import com.example.newgroup4.model.User;
 import com.example.newgroup4.remote.ApiUtils;
@@ -48,14 +48,14 @@ public class StudentHome extends AppCompatActivity {
         apptService = ApiUtils.getAppService();
 
         // execute the call. send the user token when sending the query
-        apptService.getAllAppointments(user.getToken()).enqueue(new Callback<List<Appointment>>() {
+        apptService.getLectNameByStudID(user.getToken(),user.getUsername()).enqueue(new Callback<List<ApptxLectName>>() {
             @Override
-            public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
+            public void onResponse(Call<List<ApptxLectName>> call, Response<List<ApptxLectName>> response) {
                 // for debug purpose
                 Log.d("MyApp:", "Response: " + response.raw().toString());
 
                 // Get list of appointment object from response
-                List<Appointment> appointments = response.body();
+                List<ApptxLectName> appointments = response.body();
 
                 // initialize adapter
                 ApptAdapter adapter = new ApptAdapter(context, appointments);
@@ -73,7 +73,7 @@ public class StudentHome extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Appointment>> call, Throwable t) {
+            public void onFailure(Call<List<ApptxLectName>> call, Throwable t) {
                 Toast.makeText(context, "Error connecting to the server", Toast.LENGTH_LONG).show();
                 Log.e("MyApp:", t.getMessage());
             }
