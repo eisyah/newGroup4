@@ -1,5 +1,6 @@
 package com.example.newgroup4.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,14 +29,26 @@ public class CalendarAdapt extends RecyclerView.Adapter<CalViewHolder>
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.date_box, parent, false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        layoutParams.height = (int) (parent.getHeight()*0.166666666);
+        layoutParams.height = (int) (parent.getHeight()*0.096666);
+
+        //if ada app dia colour gray and display gray else non
+        view.setBackgroundColor(Color.LTGRAY);
+
         return new CalViewHolder(view, onitemListener);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull CalViewHolder holder, int position) {
         holder.dayOfMonth.setText(daysOfMonth.get(position));
+        holder.appCount.setText("");
+       // if(Integer.parseInt(daysOfMonth.get(position))==5)
+            holder.appCount.setText(daysOfMonth.get(position)+" app.");
+       // else
+        //    holder.appCount.setText("");
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -45,6 +58,12 @@ public class CalendarAdapt extends RecyclerView.Adapter<CalViewHolder>
     public interface OnitemListener
     {
         void onItemClick(int position, String dayText);
+
+    }
+
+    //kira howmuch app every date
+    private void CollectEventsPerMonth(String Month, String Year)
+    {
 
     }
 
