@@ -38,15 +38,7 @@ public class CalendarAdapt extends RecyclerView.Adapter<CalViewHolder>
 
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull CalViewHolder holder, int position) {
-        holder.dayOfMonth.setText(daysOfMonth.get(position));
-        holder.appCount.setText("");
-       // if(Integer.parseInt(daysOfMonth.get(position))==5)
-            holder.appCount.setText(daysOfMonth.get(position)+" app.");
-       // else
-        //    holder.appCount.setText("");
-    }
+
 
 
 
@@ -61,10 +53,22 @@ public class CalendarAdapt extends RecyclerView.Adapter<CalViewHolder>
 
     }
 
-    //kira howmuch app every date
+    //kira how much app every date
     private void CollectEventsPerMonth(String Month, String Year)
     {
 
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CalViewHolder holder, int position) {
+        holder.dayOfMonth.setText(daysOfMonth.get(position));
+        holder.appCount.setText("");
+        //holder.appCount.setText(Integer.toString(getItemCount()));
+        if(position==12) {
+         holder.appCount.setText(daysOfMonth.get(position)+" app.");
+         holder.itemView.setBackgroundColor(Color.BLUE);}
+        // else
+        //    holder.appCount.setText("");
     }
 
 }
