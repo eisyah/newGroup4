@@ -60,7 +60,7 @@ public class CalendarAdapt extends RecyclerView.Adapter<CalViewHolder>
     }
 
 
-    //change each date to
+    //change each date to show colour change and num of appointment
     @Override
     public void onBindViewHolder(@NonNull CalViewHolder holder, int position) {
         holder.dayOfMonth.setText(daysOfMonth.get(position));
