@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +21,9 @@ import com.example.newgroup4.model.User;
 import com.example.newgroup4.remote.ApiUtils;
 import com.example.newgroup4.remote.ApptService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,12 +34,34 @@ public class StudentHome extends AppCompatActivity {
     ApptService apptService;
     Context context;
     RecyclerView apptList;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
         context = this; // get current activity context
+
+        // get reference to the searchView
+        searchView = findViewById(R.id.searchView);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
+
+        public void setFilteredList(List<ApptxLectName> filterList){
+            this.apptList = filterList();
+            notifyDataSetChanged();
+        }
 
         // get reference to the RecyclerView apptList
         apptList = findViewById(R.id.apptList);
@@ -101,4 +126,21 @@ public class StudentHome extends AppCompatActivity {
         });
 
     }
+
+    private void filterList(String Text) {
+        List<ApptxLectName> filteredList = new ArrayList<>();
+        for(ApptxLectName appointment: apptList){
+            if(appointment.getLectName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(appointment);
+            }
+
+            if(filteredList.isEmpty()){
+                Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
+            }else{
+                adapter.setFilteredList(filteredList);
+            }
+
+        }
+    }
+
 }
