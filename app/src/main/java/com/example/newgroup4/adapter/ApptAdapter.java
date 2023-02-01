@@ -16,7 +16,7 @@ import java.util.List;
 public class ApptAdapter extends RecyclerView.Adapter<ApptAdapter.ViewHolder>{
 
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView tvLectName;
         public TextView tvStatus;
@@ -42,9 +42,9 @@ public class ApptAdapter extends RecyclerView.Adapter<ApptAdapter.ViewHolder>{
         public ViewHolderLect(View itemView) {
             super(itemView);
 
-            tvStuName = (TextView) itemView.findViewById(R.id.tvStuName); //belum tukar
-            tvStuStatus = (TextView) itemView.findViewById(R.id.tvStuStatus);
-            tvStuID = (TextView) itemView.findViewById(R.id.tvStuID);
+            //tvStuName = (TextView) itemView.findViewById(R.id.tvStuName); //belum tukar
+            //tvStuStatus = (TextView) itemView.findViewById(R.id.tvStuStatus);
+            //tvStuID = (TextView) itemView.findViewById(R.id.tvStuID);
 
         }
 
