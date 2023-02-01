@@ -33,7 +33,7 @@ public class ApptAdapter extends RecyclerView.Adapter<ApptAdapter.ViewHolder>{
 
     }
 
-    class ViewHolderLect extends RecyclerView.ViewHolder{
+    /*class ViewHolderLect extends RecyclerView.ViewHolder{
 
         public TextView tvStuName;
         public TextView tvStuStatus;
@@ -48,7 +48,7 @@ public class ApptAdapter extends RecyclerView.Adapter<ApptAdapter.ViewHolder>{
 
         }
 
-    }
+    }*/
 
 
     private List<ApptxLectName> mListData;
