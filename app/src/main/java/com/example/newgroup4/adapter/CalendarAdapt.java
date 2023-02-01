@@ -29,9 +29,9 @@ public class CalendarAdapt extends RecyclerView.Adapter<CalViewHolder>
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.date_box, parent, false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+
         layoutParams.height = (int) (parent.getHeight()*0.096666);
 
-        //if ada app dia colour gray and display gray else non
         view.setBackgroundColor(Color.LTGRAY);
 
         return new CalViewHolder(view, onitemListener);
@@ -40,19 +40,14 @@ public class CalendarAdapt extends RecyclerView.Adapter<CalViewHolder>
 
     }
 
-
-
-
-
     @Override
     public int getItemCount() {
         return daysOfMonth.size();
-    }
+   }
 
     public interface OnitemListener
     {
         void onItemClick(int position, String dayText);
-
     }
 
     //kira how much app every date

@@ -1,14 +1,19 @@
 package com.example.newgroup4;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +33,31 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
     private RecyclerView calRecyleView;
     private LocalDate selectedDate;
 
+    //menu stuff
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // get the menu inflater
+        MenuInflater inflater = super.getMenuInflater();
+
+        // inflate the menu using our XML menu file id, options_menu
+        inflater.inflate(R.menu.options_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.logout:
+                // user clicked report bugs menu item
+                // call method to display dialog box
+                LogoutNav(); // tukar sini - ecah's sn
+                return true;
+        }
+        return false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +69,9 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
             selectedDate = LocalDate.now();
         }
         setMonthView();
+
+        //menu stuff overflow
+
 
         //logout stuff
         // get user info from SharedPreferences
@@ -157,4 +190,48 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
     }
+
+    private void LogoutNav() {
+        // prepare a dialog box with yes and no
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout?");
+        builder.setMessage("Are you sure do you want to logout?");
+
+        // prepare action listener for each button
+        builder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),
+                                "User logout successfully.",
+                                Toast.LENGTH_SHORT).show();
+
+                            // clear the shared preferences
+                            SharedPrefManager.getInstance(getApplicationContext()).logout();
+
+                            // display message
+                            Toast.makeText(getApplicationContext(),
+                                    "You have successfully logged out.",
+                                    Toast.LENGTH_LONG).show();
+
+                            // forward to LoginActivity
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+                    }
+                });
+
+        builder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        // create the alert dialog and show to the user
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
 }
