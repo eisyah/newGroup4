@@ -33,6 +33,24 @@ public class ApptAdapter extends RecyclerView.Adapter<ApptAdapter.ViewHolder>{
 
     }
 
+    class ViewHolderLect extends RecyclerView.ViewHolder{
+
+        public TextView tvStuName;
+        public TextView tvStuStatus;
+        public TextView tvStuID;
+
+        public ViewHolderLect(View itemView) {
+            super(itemView);
+
+            tvStuName = (TextView) itemView.findViewById(R.id.tvStuName); //belum tukar
+            tvStuStatus = (TextView) itemView.findViewById(R.id.tvStuStatus);
+            tvStuID = (TextView) itemView.findViewById(R.id.tvStuID);
+
+        }
+
+    }
+
+
     private List<ApptxLectName> mListData;
     private Context mContext;
 

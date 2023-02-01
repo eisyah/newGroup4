@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,12 +33,14 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecturer_home);
 
+        //calender stuff
         initWidgets();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             selectedDate = LocalDate.now();
         }
         setMonthView();
 
+        //logout stuff
         // get user info from SharedPreferences
         User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
 
