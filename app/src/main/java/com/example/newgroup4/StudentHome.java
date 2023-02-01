@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,12 +34,23 @@ public class StudentHome extends AppCompatActivity {
     Context context;
     RecyclerView apptList;
     SearchView searchView;
+    ImageButton imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
         context = this; // get current activity context
+
+        imageButton = (ImageButton) findViewById(R.id.search);
+        imageButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view)   {
+                // forward user to LecturerList
+            Intent intent = new Intent(context, LecturerList.class);
+            startActivity(intent);
+            }
+        });
 
         // get reference to the searchView
         /*searchView = findViewById(R.id.searchView);

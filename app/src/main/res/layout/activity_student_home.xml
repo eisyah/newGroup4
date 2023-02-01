@@ -6,21 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".StudentHome">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/search_view_bg"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:iconifiedByDefault="false"
-        app:queryHint="Search Here.." />
+
 
     <Button
         android:id="@+id/btnAddappt"
@@ -60,13 +46,23 @@
         android:id="@+id/apptList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/searchView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="28dp"
         android:layout_marginEnd="-1dp"
         android:layout_marginBottom="348dp" />
+
+    <ImageButton
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="328dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="27dp"
+        app:srcCompat="@android:drawable/ic_menu_search" />
 
 </RelativeLayout>
