@@ -44,7 +44,7 @@ public class StudentHome extends AppCompatActivity {
         context = this; // get current activity context
 
         // get reference to the searchView
-        searchView = findViewById(R.id.searchView);
+        /*searchView = findViewById(R.id.searchView);
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -62,7 +62,7 @@ public class StudentHome extends AppCompatActivity {
         public void setFilteredList(List<Lecturer> filterList){
             this.apptList = filterList();
             notifyDataSetChanged();
-        }
+        }*/
 
         // get reference to the RecyclerView apptList
         apptList = findViewById(R.id.apptList);
@@ -128,7 +128,7 @@ public class StudentHome extends AppCompatActivity {
 
     }
 
-    private void filterList(String Text) {
+   /* private void filterList(String Text) {
         List<Lecturer> filteredList = new ArrayList<>();
         for(Lecturer lecturer: apptList){
             if(lecturer.getLectName().toLowerCase().contains(text.toLowerCase())){
@@ -142,6 +142,6 @@ public class StudentHome extends AppCompatActivity {
             }
 
         }
-    }
+    }*/
 
 }
