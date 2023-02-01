@@ -11,12 +11,16 @@ import retrofit2.http.Header;
 
 public interface LectService {
 
-    @GET("api/lecturers")
-    Call<List<Lecturer>> getAllLecturer(@Header("api-key") String api_key);
+    //@GET("api/lecturers")
+    //Call<List<Lecturer>> getAllLecturer(@Header("api-key") String api_key);
 
     //get lecturer by id
     @GET("api/lecturers/getbylectID")
     Call<Lecturer> getbylectID( @Field("lectID") String lectID);
+
+    //custom API for getting lecturer
+    @GET("api/lecturers/getall")
+    Call<List<Lecturer>> getAllLecturer(@Header("api-key") String api_key);
 
 
 }

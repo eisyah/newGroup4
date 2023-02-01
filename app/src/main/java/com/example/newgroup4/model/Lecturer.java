@@ -2,18 +2,18 @@ package com.example.newgroup4.model;
 
 public class Lecturer {
 
-    private int lectID;
+    private String lectID;
     private String lectName;
     private String lectEmail;
     private String lectPhoneno;
 
     /* getters and setters */
 
-    public int getLectID() {
+    public String  getLectID() {
         return lectID;
     }
 
-    public void setLectID(int lectID) {
+    public void setLectID(String lectID) {
         this.lectID = lectID;
     }
 
