@@ -14,17 +14,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.newgroup4.adapter.ApptAdapter;
+import com.example.newgroup4.adapter.StudSideApptAdapter;
 import com.example.newgroup4.model.ApptxLectName;
-import com.example.newgroup4.model.Lecturer;
 import com.example.newgroup4.model.SharedPrefManager;
 import com.example.newgroup4.model.User;
 import com.example.newgroup4.remote.ApiUtils;
 import com.example.newgroup4.remote.ApptService;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -84,7 +81,7 @@ public class StudentHome extends AppCompatActivity {
                 List<ApptxLectName> appointments = response.body();
 
                 // initialize adapter
-                ApptAdapter adapter = new ApptAdapter(context, appointments);
+                StudSideApptAdapter adapter = new StudSideApptAdapter(context, appointments);
 
                 // set adapter to the RecylerView
                 apptList.setAdapter(adapter);

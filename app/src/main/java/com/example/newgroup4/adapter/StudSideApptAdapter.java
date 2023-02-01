@@ -13,7 +13,7 @@ import com.example.newgroup4.model.ApptxLectName;
 
 import java.util.List;
 
-public class ApptAdapter extends RecyclerView.Adapter<ApptAdapter.ViewHolder>{
+public class StudSideApptAdapter extends RecyclerView.Adapter<StudSideApptAdapter.ViewHolder>{
 
 
     static class ViewHolder extends RecyclerView.ViewHolder{
@@ -54,7 +54,7 @@ public class ApptAdapter extends RecyclerView.Adapter<ApptAdapter.ViewHolder>{
     private List<ApptxLectName> mListData;
     private Context mContext;
 
-    public ApptAdapter(Context context, List<ApptxLectName> listData){
+    public StudSideApptAdapter(Context context, List<ApptxLectName> listData){
         mListData = listData;
         mContext = context;
     }

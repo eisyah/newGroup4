@@ -56,7 +56,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newgroup4.R;
 
-public class LectAppAdapter extends RecyclerView.Adapter<LectAppAdapter.ViewHolderLect> {
+public class LectSideAppAdapter extends RecyclerView.Adapter<LectSideAppAdapter.ViewHolderLect> {
 
     class ViewHolderLect extends RecyclerView.ViewHolder {
 
@@ -83,7 +83,7 @@ public class LectAppAdapter extends RecyclerView.Adapter<LectAppAdapter.ViewHold
 
         View view = inflater.inflate(R.layout.appt_list_item, parent, false);
 
-        ApptAdapter.ViewHolder viewHolder = new ApptAdapter.ViewHolder(view);
+        StudSideApptAdapter.ViewHolder viewHolder = new StudSideApptAdapter.ViewHolder(view);
        // return viewHolder;
         return null;
     }
@@ -103,8 +103,6 @@ public class LectAppAdapter extends RecyclerView.Adapter<LectAppAdapter.ViewHold
     public int getItemCount() {
         return 0;
     }
-
-
 
 
 }
