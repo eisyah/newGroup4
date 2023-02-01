@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newgroup4.adapter.ApptAdapter;
 import com.example.newgroup4.model.ApptxLectName;
+import com.example.newgroup4.model.Lecturer;
 import com.example.newgroup4.model.SharedPrefManager;
 import com.example.newgroup4.model.User;
 import com.example.newgroup4.remote.ApiUtils;
@@ -58,7 +59,7 @@ public class StudentHome extends AppCompatActivity {
             }
         });
 
-        public void setFilteredList(List<ApptxLectName> filterList){
+        public void setFilteredList(List<Lecturer> filterList){
             this.apptList = filterList();
             notifyDataSetChanged();
         }
@@ -128,10 +129,10 @@ public class StudentHome extends AppCompatActivity {
     }
 
     private void filterList(String Text) {
-        List<ApptxLectName> filteredList = new ArrayList<>();
-        for(ApptxLectName appointment: apptList){
-            if(appointment.getLectName().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(appointment);
+        List<Lecturer> filteredList = new ArrayList<>();
+        for(Lecturer lecturer: apptList){
+            if(lecturer.getLectName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(lecturer);
             }
 
             if(filteredList.isEmpty()){
