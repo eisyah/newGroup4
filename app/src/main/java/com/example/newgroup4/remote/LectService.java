@@ -11,7 +11,7 @@ import retrofit2.http.Header;
 
 public interface LectService {
 
-    @GET("api/lecturer")
+    @GET("api/lecturers")
     Call<List<Lecturer>> getAllLecturer(@Header("api-key") String api_key);
 
     //get lecturer by id
