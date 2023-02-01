@@ -19,6 +19,7 @@ public interface ApptService {
     @GET("api/appointment/getbystudID")
     Call<List<Appointment>> getAppointmentByStudID(@Header("api-key") String api_key, @Query("studID") String studID);
 
+    //to get lecture name for student appointment view
     @GET("api/appointment/getlectnamebystudID")
     Call<List<ApptxLectName>> getLectNameByStudID(@Header("api-key") String api_key, @Query("studID") String studID);
 }
