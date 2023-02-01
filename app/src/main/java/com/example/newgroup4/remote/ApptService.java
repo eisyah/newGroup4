@@ -1,7 +1,7 @@
 package com.example.newgroup4.remote;
 
 import com.example.newgroup4.model.Appointment;
-import com.example.newgroup4.model.ApptxLectName;
+import com.example.newgroup4.model.StudSideApptxLectName;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public interface ApptService {
 
     //to get lecture name for student appointment view
     @GET("api/appointment/getlectnamebystudID")
-    Call<List<ApptxLectName>> getLectNameByStudID(@Header("api-key") String api_key, @Query("studID") String studID);
+    Call<List<StudSideApptxLectName>> getLectNameByStudID(@Header("api-key") String api_key, @Query("studID") String studID);
 
     //api to get appointment by lecture id
     @GET("api/appointment/getbylectID")

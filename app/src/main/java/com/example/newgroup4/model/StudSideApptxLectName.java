@@ -4,7 +4,7 @@ package com.example.newgroup4.model;
 //this is to get the lecturer name for the appointment
 //this is also most probably would only be used one time
 
-public class ApptxLectName {
+public class StudSideApptxLectName {
     public String lectID;
     public String lectName;
     public String lectEmail;
@@ -100,7 +100,7 @@ public class ApptxLectName {
     ///////////////////////
 
 
-    public ApptxLectName(String lectID, String lectName, String lectEmail, String lectPhoneno, String apptID, String studID, String date, String time, String reason, String status) {
+    public StudSideApptxLectName(String lectID, String lectName, String lectEmail, String lectPhoneno, String apptID, String studID, String date, String time, String reason, String status) {
         this.lectID = lectID;
         this.lectName = lectName;
         this.lectEmail = lectEmail;

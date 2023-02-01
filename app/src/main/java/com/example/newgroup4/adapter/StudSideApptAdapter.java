@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newgroup4.R;
-import com.example.newgroup4.model.ApptxLectName;
+import com.example.newgroup4.model.StudSideApptxLectName;
 
 import java.util.List;
 
@@ -51,10 +51,10 @@ public class StudSideApptAdapter extends RecyclerView.Adapter<StudSideApptAdapte
     }*/
 
 
-    private List<ApptxLectName> mListData;
+    private List<StudSideApptxLectName> mListData;
     private Context mContext;
 
-    public StudSideApptAdapter(Context context, List<ApptxLectName> listData){
+    public StudSideApptAdapter(Context context, List<StudSideApptxLectName> listData){
         mListData = listData;
         mContext = context;
     }
@@ -73,7 +73,7 @@ public class StudSideApptAdapter extends RecyclerView.Adapter<StudSideApptAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
 
-        ApptxLectName m = mListData.get(position);
+        StudSideApptxLectName m = mListData.get(position);
         holder.tvLectName.setText((m.getLectName()));
         holder.tvStatus.setText(m.getStatus());
         holder.tvLectID.setText(m.getLectID());
