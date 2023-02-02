@@ -192,7 +192,7 @@ public class StudentAddAppointment extends AppCompatActivity {
         String status = txtStatus.getText().toString();
         String time = tvTime.getSelectedItem().toString();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String test_time = dateFormat.format(time);
 
 

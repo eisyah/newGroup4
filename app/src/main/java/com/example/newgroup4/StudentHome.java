@@ -39,15 +39,35 @@ public class StudentHome extends AppCompatActivity {
     RecyclerView apptList;
     SearchView searchView;
     ImageButton imageButton;
+    public StudSideApptAdapter adapter;
 
     //menu stuff
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // get the menu inflater
         MenuInflater inflater = super.getMenuInflater();
+        MenuInflater inflater2 = getMenuInflater();
 
         // inflate the menu using our XML menu file id, options_menu
         inflater.inflate(R.menu.options_menu, menu);
+        inflater2.inflate(R.menu.menu_appt, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+
+                return false;
+            }
+        });
 
         return true;
     }
@@ -100,7 +120,7 @@ public class StudentHome extends AppCompatActivity {
                 List<StudSideApptxLectName> appointments = response.body();
 
                 // initialize adapter
-                StudSideApptAdapter adapter = new StudSideApptAdapter(context, appointments);
+                 adapter = new StudSideApptAdapter(context, appointments);
 
                 // set adapter to the RecylerView
                 apptList.setAdapter(adapter);
@@ -123,21 +143,7 @@ public class StudentHome extends AppCompatActivity {
 
     }
 
-   /* private void filterList(String Text) {
-        List<Lecturer> filteredList = new ArrayList<>();
-        for(Lecturer lecturer: apptList){
-            if(lecturer.getLectName().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(lecturer);
-            }
 
-            if(filteredList.isEmpty()){
-                Toast.makeText(this, "No data found", Toast.LENGTH_SHORT).show();
-            }else{
-                adapter.setFilteredList(filteredList);
-            }
-
-        }
-    }*/
 
     //logout on menu
     private void LogoutNav() {
