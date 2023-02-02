@@ -22,5 +22,7 @@ public interface LectService {
     @GET("api/lecturers/getall")
     Call<List<Lecturer>> getAllLecturer(@Header("api-key") String api_key);
 
+    //
+
 
 }

@@ -35,5 +35,5 @@ public interface ApptService {
     //api to get single appointment filtered by lecturer ID
     @GET("api/appointment/getbylectID")
     Call<Appointment> getSingAppointmentByLectID(@Header("api-key") String api_key, @Query("lectID_fk") String lectID);
-
+    //
 }
