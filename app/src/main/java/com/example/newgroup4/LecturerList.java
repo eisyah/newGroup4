@@ -46,8 +46,6 @@ public class LecturerList extends AppCompatActivity {
         setContentView(R.layout.activity_lecturer_list);
         context = this; // get current activity context
 
-        // register the listview for context menu
-        super.registerForContextMenu(lecturerList);
 
         // get reference to the RecyclerView lectList
         lecturerList = findViewById(R.id.lecturerList);
@@ -89,6 +87,9 @@ public class LecturerList extends AppCompatActivity {
                 Log.e("MyApp:", t.getMessage());
             }
         });
+
+        // register the listview for context menu
+        super.registerForContextMenu(lecturerList);
     }
 
 
