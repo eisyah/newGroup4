@@ -8,9 +8,9 @@
         android:title="Logout"
         app:showAsAction="ifRoom"/>
 
-    <!-- Overflow menu. No need for icon -->
+    <!-- Overflow menu. No need for icon
     <item android:id="@+id/report_bugs"
-        android:title="something" />
+        android:title="something" />-->
     <!--<item android:id="@+id/logout"
         android:title="Logout"/> -->
 

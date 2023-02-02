@@ -73,6 +73,7 @@ public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> im
         // bind data to the view Holder
         Lecturer m = mListData.get(position);
         holder.tvLectNameList.setText(m.getLectName());
+
     }
 
     @Override
@@ -116,7 +117,13 @@ public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> im
             mListData.addAll((List) results.values);
             notifyDataSetChanged();
         }
+
+
     };
+
+
+
+
 }
 
 

@@ -1,68 +1,32 @@
 package com.example.newgroup4;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.newgroup4.adapter.ArrayAdaptLectsApp;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.newgroup4.adapter.CalendarAdapt;
-import com.example.newgroup4.model.SharedPrefManager;
-import com.example.newgroup4.model.User;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class LecturerHome extends AppCompatActivity implements CalendarAdapt.OnitemListener {
+public class CalendarBook4Student extends AppCompatActivity implements CalendarAdapt.OnitemListener{
 
     private TextView monthYearText;
     private RecyclerView calRecyleView;
     private LocalDate selectedDate;
 
-    //menu stuff
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // get the menu inflater
-        MenuInflater inflater = super.getMenuInflater();
-
-        // inflate the menu using our XML menu file id, options_menu
-        inflater.inflate(R.menu.options_menu, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.logout:
-                // user clicked report bugs menu item
-                // call method to display dialog box
-                LogoutNav(); // tukar sini - ecah's sn
-                return true;
-        }
-        return false;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lecturer_home);
+        setContentView(R.layout.activity_calendar_book4_student);
 
         //calender stuff
         initWidgets();
@@ -70,8 +34,9 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
             selectedDate = LocalDate.now();
         }
         setMonthView();
-
+        
     }
+
 
     private void initWidgets()
     {
@@ -162,56 +127,8 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         if (!dayText.equals("")) {
             String message = "Selected Date " + dayText + " " + monthYearFromDate(selectedDate);
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-
-            Intent intent = new Intent(getBaseContext(), LectDateApp.class);
-            // get the data from the array based on the item position/index
-            /*intent.putExtra("NAME", ArrayAdaptLectsApp.getNames()[pos]);
-            intent.putExtra("TIME", ArrayAdaptLectsApp.getPhoneNos()[pos]);*/
-            intent.putExtra("DATE", dayText + " " + monthYearFromDate(selectedDate));
-            // start the details activity
-            startActivity(intent);
-
         }
     }
 
-    private void LogoutNav() {
-        // prepare a dialog box with yes and no
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Logout?");
-        builder.setMessage("Are you sure do you want to logout?");
-
-        // prepare action listener for each button
-        builder.setPositiveButton("Yes",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                            // clear the shared preferences
-                            SharedPrefManager.getInstance(getApplicationContext()).logout();
-
-                            // display message
-                            Toast.makeText(getApplicationContext(),
-                                    "You have successfully logged out.",
-                                    Toast.LENGTH_LONG).show();
-
-                            // forward to LoginActivity
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-
-                    }
-                });
-
-        builder.setNegativeButton("No",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-        // create the alert dialog and show to the user
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
 
 }
