@@ -9,8 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -22,8 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newgroup4.adapter.StudSideApptAdapter;
-import com.example.newgroup4.model.StudSideApptxLectName;
 import com.example.newgroup4.model.SharedPrefManager;
+import com.example.newgroup4.model.StudSideApptxLectName;
 import com.example.newgroup4.model.User;
 import com.example.newgroup4.remote.ApiUtils;
 import com.example.newgroup4.remote.ApptService;
@@ -180,6 +178,12 @@ public class StudentHome extends AppCompatActivity {
         // create the alert dialog and show to the user
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    //implement button add appointment
+    public void doAddAppointment(View view) {
+        Intent intent = new Intent(this, StudentAddAppointment.class);
+        startActivity(intent);
     }
 
 

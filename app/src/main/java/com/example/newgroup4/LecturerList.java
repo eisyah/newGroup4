@@ -12,13 +12,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.newgroup4.adapter.LectAdapter;
@@ -28,9 +25,7 @@ import com.example.newgroup4.model.User;
 import com.example.newgroup4.remote.ApiUtils;
 import com.example.newgroup4.remote.LectService;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -94,7 +89,7 @@ public class LecturerList extends AppCompatActivity {
                 listener = new LectAdapter.RecyclerViewClickListener() {
                     @Override
                     public void onClick(View v, int position) {
-                        Intent intent = new Intent(getApplicationContext(), AddAppointment.class);
+                        Intent intent = new Intent(getApplicationContext(), StudentAddAppointment.class);
                         //intent.putExtra()
                         startActivity(intent);
                     }

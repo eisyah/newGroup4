@@ -20,6 +20,11 @@ public class ApiUtils {
         return RetrofitClient.getClient(BASE_URL).create(LectService.class);
     }
 
+    //return StudService instance
+    public static StudService getStudService() {
+        return RetrofitClient.getClient(BASE_URL).create(StudService.class);
+    }
+
 
 
 }

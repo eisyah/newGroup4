@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:useDefaultMargins="true"
@@ -49,8 +50,8 @@
                 android:layout_weight="0.25"
                 android:text="Lecturer Name:" />
 
-            <EditText
-                android:id="@+id/txtlectName"
+            <Spinner
+                android:id="@+id/txtLectName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
@@ -139,12 +140,15 @@
                 android:layout_weight="0.25"
                 android:text="Status:" />
 
-            <EditText
+            <TextView
                 android:id="@+id/txtStatus"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.75"
-                android:contentDescription="New" />
+                android:contentDescription="New"
+                android:text="New"
+                android:visibility="visible"
+                tools:text="new" />
         </LinearLayout>
 
 
