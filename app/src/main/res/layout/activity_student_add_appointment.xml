@@ -95,19 +95,14 @@
                 android:layout_weight="0.25"
                 android:text="Time:" />
 
-            <TextView
+            <Spinner
                 android:id="@+id/tvTime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
-                android:text="HH:MM:SS" />
+                android:entries="@array/slots" />
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Pick Time"
-                android:layout_weight="0.35"
-                android:onClick="showTimePickerDialog" />
+
 
         </LinearLayout>
 
