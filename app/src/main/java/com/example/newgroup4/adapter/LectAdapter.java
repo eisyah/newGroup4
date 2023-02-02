@@ -47,7 +47,7 @@ public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> im
         mContext = context;
 
         // add 2
-        LlistData = new ArrayList<>(listData);
+        LlistData = new ArrayList<>(mListData);
     }
 
 
