@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
@@ -43,6 +45,9 @@ public class LecturerList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecturer_list);
         context = this; // get current activity context
+
+        // register the listview for context menu
+        super.registerForContextMenu(lecturerList);
 
         // get reference to the RecyclerView lectList
         lecturerList = findViewById(R.id.lecturerList);
@@ -90,6 +95,9 @@ public class LecturerList extends AppCompatActivity {
     // add 5
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
+
+
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_test, menu);
 
@@ -112,6 +120,16 @@ public class LecturerList extends AppCompatActivity {
             }
         });
         return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater inflater1 = getMenuInflater();
+        inflater1.inflate(R.menu.option_add_menu, menu);
+        menu.setHeaderTitle("Select the action:");
     }
 
 

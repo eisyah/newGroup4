@@ -100,10 +100,10 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         String month = monthYearText.getText().toString();
         ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
 
-        CalendarAdapt calendarAdapter = new CalendarAdapt(daysInMonth, this, appointmentList, appointmentListMain, month);
+        //CalendarAdapt calendarAdapter = new CalendarAdapt(daysInMonth, this, appointmentList, appointmentListMain, month);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calRecyleView.setLayoutManager(layoutManager);
-        calRecyleView.setAdapter(calendarAdapter);
+        //calRecyleView.setAdapter(calendarAdapter);
     }
 
     private ArrayList<String> daysInMonthArray(LocalDate date)
