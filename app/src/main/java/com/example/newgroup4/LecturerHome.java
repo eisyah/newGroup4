@@ -9,8 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.newgroup4.adapter.ArrayAdaptLectsApp;
 import com.example.newgroup4.adapter.CalendarAdapt;
 import com.example.newgroup4.model.Appointment;
 import com.example.newgroup4.model.SharedPrefManager;
@@ -100,10 +97,12 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         String month = monthYearText.getText().toString();
         ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
 
-        //CalendarAdapt calendarAdapter = new CalendarAdapt(daysInMonth, this, appointmentList, appointmentListMain, month);
+        CalendarAdapt calendarAdapter = new CalendarAdapt(daysInMonth, this, appointmentListMain, month);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calRecyleView.setLayoutManager(layoutManager);
-        //calRecyleView.setAdapter(calendarAdapter);
+        calRecyleView.setAdapter(calendarAdapter);
+
+
     }
 
     private ArrayList<String> daysInMonthArray(LocalDate date)
