@@ -42,10 +42,6 @@ public class LecturerList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecturer_list);
-
-
-
-
         context = this; // get current activity context
 
         // get reference to the RecyclerView lectList
