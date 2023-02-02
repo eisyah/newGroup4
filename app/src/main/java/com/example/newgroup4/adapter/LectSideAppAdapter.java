@@ -56,7 +56,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newgroup4.R;
 
-public class LectSideApptAdapter extends RecyclerView.Adapter<LectSideApptAdapter.ViewHolderLect> {
+public class LectSideAppAdapter extends RecyclerView.Adapter<LectSideAppAdapter.ViewHolderLect> {
 
     class ViewHolderLect extends RecyclerView.ViewHolder {
 

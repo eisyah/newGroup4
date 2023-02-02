@@ -21,10 +21,10 @@ public class CalendarAdapt extends RecyclerView.Adapter<CalViewHolder>
     private final List<Appointment> appointments;
     private final String monthOfYear;
 
-    public CalendarAdapt(ArrayList<String> daysOfMonth, OnitemListener onitemListener, List<Appointment> appointmentList, List<Appointment> appointments, String month) {
+    public CalendarAdapt(ArrayList<String> daysOfMonth, OnitemListener onitemListener, List<Appointment> appointmentList, String month) {
         this.daysOfMonth = daysOfMonth;
         this.onitemListener = onitemListener;
-        this.appointments = appointments;
+        this.appointments = appointmentList;
         this.monthOfYear = month;
     }
 
