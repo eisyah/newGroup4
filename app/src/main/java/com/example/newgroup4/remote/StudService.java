@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 public interface StudService {
     //get student by id
     @GET("api/students/getbystudID")
-    Call<Student> getbystudID(@Header("api-key") String api_key, @Query("studID") String studID);
+    Call<Student> getbystudID(@Header("api-key") String api_key, @Query("studID_fk") String studID);
 
     //custom API for getting student
     @GET("api/students/getall")

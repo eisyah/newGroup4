@@ -16,7 +16,7 @@ public interface LectService {
 
     //get lecturer by id
     @GET("api/lecturers/getbylectID")
-    Call<Lecturer> getbylectID( @Field("lectID") String lectID);
+    Call<Lecturer> getbylectID( @Field("lectID_fk") String lectID);
 
     //custom API for getting lecturer
     @GET("api/lecturers/getall")
