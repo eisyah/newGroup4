@@ -2,6 +2,8 @@ package com.example.newgroup4;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,19 +12,25 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.newgroup4.adapter.LecturerSpinnerAdapter;
+import com.example.newgroup4.model.Appointment;
 import com.example.newgroup4.model.Lecturer;
 import com.example.newgroup4.model.SharedPrefManager;
+import com.example.newgroup4.model.StudSideApptxLectName;
 import com.example.newgroup4.model.Student;
 import com.example.newgroup4.model.User;
 import com.example.newgroup4.remote.ApiUtils;
+import com.example.newgroup4.remote.ApptService;
 import com.example.newgroup4.remote.LectService;
 import com.example.newgroup4.remote.StudService;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,10 +47,11 @@ public class StudentAddAppointment extends AppCompatActivity {
     private TextView txtName ;
     private Spinner txtLectName;
     private static TextView tvDate ;
-    private TextView tvTime ;
+    private Spinner tvTime;
     private TextView txtReason ;
     private TextView txtStatus ;
     private static Date createdAt;
+    private Context context;
 
     /**
      * Date picker fragment class
@@ -87,10 +96,8 @@ public class StudentAddAppointment extends AppCompatActivity {
         tvDate = findViewById(R.id.tvDate);
         txtReason = findViewById(R.id.txtReason);
         txtStatus = findViewById(R.id.txtStatus);
+        tvTime = findViewById(R.id.tvTime);
 
-        //time
-        Spinner tvTime = findViewById(R.id.tvTime);
-        String time = tvTime.getSelectedItem().toString();
 
 
         createdAt = new Date();
@@ -176,7 +183,79 @@ public class StudentAddAppointment extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    public void addNewAppt()
-    {
+
+
+    public void addNewAppt(View v) {
+        String name = txtName.getText().toString();
+        String lectName = txtLectName.getSelectedItem().toString();
+        String reason = txtReason.getText().toString();
+        String status = txtStatus.getText().toString();
+        String time = tvTime.getSelectedItem().toString();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm");
+        String test_time = dateFormat.format(time);
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String created_at = sdf.format(createdAt);
+
+        Appointment a = Appointment(0, name, lectName, created_at, test_time, reason, status);
+        //get user info from SharedPreferences
+        User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
+
+        ApptService apptService = ApiUtils.getApptService();
+        Call<Appointment> call = apptService.addAppt(user.getToken(), a);
+
+        call.enqueue(new Callback<Appointment>() {
+            @Override
+            public void onResponse(Call<Appointment> call, Response<Appointment> response) {
+
+                // for debug purpose
+                Log.d("MyApp:", "Response: " + response.raw().toString());
+
+                // invalid session?
+                if (response.code() == 401)
+                    displayAlert("Invalid session. Please re-login");
+
+                // appointment added successfully?
+                Appointment added = response.body();
+                if(added != null){
+
+                    Toast.makeText(context,
+                            added.getApptID() + "added succesfully.",
+                            Toast.LENGTH_LONG).show();
+
+                    //end thus activity forward to home
+                    Intent intent = new Intent(context, StudentHome.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    displayAlert("Add appointment failed");
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<Appointment> call, Throwable t) {
+                displayAlert("Error [" + t.getMessage() + "]");
+                // for debug purpose
+                Log.d("MyApp:", "Error: " + t.getCause().getMessage());
+            }
+        });
+
+    }
+
+    public void displayAlert(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do things
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
