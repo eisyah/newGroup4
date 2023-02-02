@@ -184,7 +184,7 @@ public class StudentAddAppointment extends AppCompatActivity {
     }
 
 
-
+/*
     public void addNewAppt(View v) {
         String name = txtName.getText().toString();
         String lectName = txtLectName.getSelectedItem().toString();
@@ -243,7 +243,7 @@ public class StudentAddAppointment extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
     public void displayAlert(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
