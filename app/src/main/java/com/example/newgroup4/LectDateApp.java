@@ -3,7 +3,6 @@ package com.example.newgroup4;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,16 +22,6 @@ public class LectDateApp extends AppCompatActivity {
         // the main activity layout
         ListView contactList = (ListView)findViewById(R.id.LectsAppList);
         contactList.setAdapter(contactAdapter);
-
-        // initialize values in the activity based on the values sent by caller
-        String date = getIntent().getStringExtra("DATE");
-
-        // set the values inside the view
-        // first, find the view item by id declared in the XML
-        TextView dateInfo = (TextView)findViewById(R.id.dateInfo);
-
-        // then, set the value
-        dateInfo.setText("Appointments on "+date);
 
     }
 }

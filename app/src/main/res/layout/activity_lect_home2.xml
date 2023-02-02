@@ -6,4 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".LectHome2">
 
+    <LinearLayout
+        android:id="@+id/linAppList"
+        android:layout_width="357dp"
+        android:layout_height="489dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:context=".MainActivity">
+
+        <!-- to hold contact item list -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/LectsAppList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="155dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="32dp"
+        android:text="PROFILE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toEndOf="@+id/btnApproved"
+        android:onClick="AppAptBtnClicked"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnApproved"
+        android:layout_width="155dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:text="APPROVED APPOINMENT"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="132dp"
+        android:text="NEW APPOINTMENT!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

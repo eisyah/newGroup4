@@ -81,4 +81,8 @@ public class Appointment {
                 ", status='" + status + '\'' +
                 '}';
     }
+
+    public String getstuName() {
+        return studID;
+    }
 }

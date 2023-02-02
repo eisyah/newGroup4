@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             if (user.getRole().equals("lect")) {
                 //forward to LecturerHome
                 finish();
-                startActivity(new Intent(getApplicationContext(), LecturerHome.class));
+                startActivity(new Intent(getApplicationContext(), LectHome2.class));
             } else if (user.getRole().equals("stud")) {
                 //forward to StudentHome
                 finish();
@@ -142,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (user.getRole().equals("lect")) {
                             //forward to LecturerHome
                             finish();
-                            startActivity(new Intent(getApplicationContext(), LecturerHome.class));
+                            startActivity(new Intent(getApplicationContext(), LectHome2.class));
                         } else if (user.getRole().equals("stud")) {
                             //forward to StudentHome
                             finish();

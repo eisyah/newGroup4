@@ -4,36 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LectDateApp">
+    tools:context=".approvedAppLectView">
 
     <TextView
-        android:id="@+id/newApp"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Appointment on ####"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="375dp"
-        android:layout_height="649dp"
-        android:layout_marginTop="12dp"
+        android:text="Approved Appointment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newApp"
-        app:layout_constraintVertical_bias="0.157"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <LinearLayout
+        android:id="@+id/linAppList"
+        android:layout_width="364dp"
+        android:layout_height="636dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:context=".MainActivity">
 
         <!-- to hold contact item list -->
+
         <ListView
             android:id="@+id/LectsAppList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
