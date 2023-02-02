@@ -15,6 +15,13 @@
         android:theme="@style/Theme.NewGroup4"
         tools:targetApi="31">
         <activity
+            android:name=".LectHome2"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".LectDateApp"
             android:exported="false">
             <meta-data
