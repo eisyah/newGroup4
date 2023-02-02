@@ -35,7 +35,7 @@ public class LecturerList extends AppCompatActivity {
     LectService lectService;
     Context context;
     RecyclerView lecturerList;
-    private LectAdapter adapter1;
+    public LectAdapter adapter;
 
 
     @Override
@@ -64,7 +64,7 @@ public class LecturerList extends AppCompatActivity {
                 List<Lecturer> lecturers = response.body();
 
                 // initialize adapter
-                LectAdapter adapter = new LectAdapter(context, lecturers);
+                adapter = new LectAdapter(context, lecturers);
 
                 // set adapter to the recycler view
                 lecturerList.setAdapter(adapter);
@@ -106,7 +106,7 @@ public class LecturerList extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter1.getFilter().filter(newText);
+                adapter.getFilter().filter(newText);
 
                 return false;
             }
