@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,19 +21,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newgroup4.adapter.ArrayAdaptLectsApp;
 import com.example.newgroup4.adapter.CalendarAdapt;
+import com.example.newgroup4.model.Appointment;
 import com.example.newgroup4.model.SharedPrefManager;
 import com.example.newgroup4.model.User;
+import com.example.newgroup4.remote.ApiUtils;
+import com.example.newgroup4.remote.ApptService;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LecturerHome extends AppCompatActivity implements CalendarAdapt.OnitemListener {
 
     private TextView monthYearText;
     private RecyclerView calRecyleView;
     private LocalDate selectedDate;
+    private List<Appointment> appointmentListMain = new ArrayList<>();
 
     //menu stuff
     @Override
@@ -64,12 +74,17 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecturer_home);
 
+        //get appointment and set them into the calendar
+        appointmentListMain = getAppointment();
+
         //calender stuff
         initWidgets();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             selectedDate = LocalDate.now();
+
         }
-        setMonthView();
+        setMonthView(appointmentListMain);
+
 
     }
 
@@ -79,12 +94,13 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         monthYearText = findViewById(R.id.monthYearTV);
     }
 
-    private void setMonthView()
+    private void setMonthView(List<Appointment> appointmentList)
     {
         monthYearText.setText(monthYearFromDate(selectedDate));
+        String month = monthYearText.getText().toString();
         ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
 
-        CalendarAdapt calendarAdapter = new CalendarAdapt(daysInMonth, this);
+        CalendarAdapt calendarAdapter = new CalendarAdapt(daysInMonth, this, appointmentList, appointmentListMain, month);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calRecyleView.setLayoutManager(layoutManager);
         calRecyleView.setAdapter(calendarAdapter);
@@ -130,7 +146,7 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
     {
         DateTimeFormatter formatter = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+            formatter = DateTimeFormatter.ofPattern("MM yyyy");
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return date.format(formatter);
@@ -144,7 +160,7 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             selectedDate = selectedDate.minusMonths(1);
         }
-        setMonthView();
+        setMonthView(appointmentListMain);
     }
 
     public void nextMonthAction(View view)
@@ -152,7 +168,7 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             selectedDate = selectedDate.plusMonths(1);
         }
-        setMonthView();
+        setMonthView(appointmentListMain);
     }
 
 
@@ -213,5 +229,61 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+    //getAppointment method
+    private List<Appointment> getAppointment() {
+
+
+        User user = SharedPrefManager.getInstance(this).getUser();
+        ApptService apptService = ApiUtils.getApptService();
+
+        apptService.getMultAppointmentByLectID(user.getToken(),user.getUsername()).enqueue(new Callback<List<Appointment>>() {
+            @Override
+            public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
+                if (response.isSuccessful()) {
+                    List<Appointment> appointmentList = response.body();
+                    appointmentListMain.addAll(appointmentList);
+                    Toast.makeText(getApplicationContext(), "Appointment retrieved", Toast.LENGTH_LONG).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Appointment>> call, Throwable t) {
+
+                ApptService apptService = ApiUtils.getApptService();
+
+                apptService.getSingAppointmentByLectID(user.getToken(),user.getUsername()).enqueue(new Callback<Appointment>() {
+                    @Override
+                    public void onResponse(Call<Appointment> call, Response<Appointment> response) {
+                        if (response.isSuccessful()) {
+                            Appointment appointment = response.body();
+                            appointmentListMain.add(appointment);
+                            Toast.makeText(getApplicationContext(), "Appointment retrieved", Toast.LENGTH_LONG).show();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Appointment> call, Throwable t) {
+
+                        Toast.makeText(getApplicationContext(), "Appointment not retrieved", Toast.LENGTH_LONG).show();
+                        Log.e("MyApp:", t.getMessage());
+                    }
+                });
+
+                //Toast.makeText(getApplicationContext(), "Appointment not retrieved", Toast.LENGTH_LONG).show();
+                //Log.e("MyApp:", t.getMessage());
+            }
+        });
+
+
+        return appointmentListMain;
+    }
+
+
+
 
 }
