@@ -20,11 +20,16 @@ import java.util.Locale;
 
 public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> implements Filterable {
 
+
+    // add 1
+    private List<Lecturer> LlistData;
+
+    private List<Lecturer> mListData; // list of lecturer object
+    private Context mContext;         // activity context
+
     /**
      * Create ViewHolder class to bind list item view
      */
-
-
     class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvLectNameList;
@@ -36,11 +41,7 @@ public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> im
         }
     }
 
-    // add 1
-    private List<Lecturer> LlistData;
 
-    private List<Lecturer> mListData; // list of lecturer object
-    private Context mContext;         // activity context
 
     public LectAdapter(Context context, List<Lecturer> listData){
         mListData = listData;
@@ -95,6 +96,7 @@ public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> im
                filteredList.addAll(LlistData);
            }else{
                String filterPattern = constraint.toString().toLowerCase().trim();
+
                for(Lecturer lect : LlistData){
                    if(lect.getLectName().toLowerCase().contains(filterPattern)){
                        filteredList.add(lect);
@@ -111,7 +113,7 @@ public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> im
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             mListData.clear();
-            mListData.addAll((List)results.values);
+            mListData.addAll((List) results.values);
             notifyDataSetChanged();
         }
     };
