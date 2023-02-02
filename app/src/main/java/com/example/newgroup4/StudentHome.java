@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newgroup4.adapter.StudSideApptAdapter;
+import com.example.newgroup4.model.Appointment;
+import com.example.newgroup4.model.DeleteResponse;
 import com.example.newgroup4.model.SharedPrefManager;
 import com.example.newgroup4.model.StudSideApptxLectName;
 import com.example.newgroup4.model.User;
@@ -103,6 +105,12 @@ public class StudentHome extends AppCompatActivity {
         // get reference to the RecyclerView apptList
         apptList = findViewById(R.id.apptList);
 
+        updateListView();
+
+
+    }
+
+    private void updateListView() {
         // get user info from SharedPreferences
         User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
 
@@ -120,7 +128,7 @@ public class StudentHome extends AppCompatActivity {
                 List<StudSideApptxLectName> appointments = response.body();
 
                 // initialize adapter
-                 adapter = new StudSideApptAdapter(context, appointments);
+                adapter = new StudSideApptAdapter(context, appointments);
 
                 // set adapter to the RecylerView
                 apptList.setAdapter(adapter);
@@ -140,9 +148,7 @@ public class StudentHome extends AppCompatActivity {
                 Log.e("MyApp:", t.getMessage());
             }
         });
-
     }
-
 
 
     //logout on menu
@@ -192,6 +198,58 @@ public class StudentHome extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public boolean onContextItemSelected(MenuItem item){
+        StudSideApptxLectName selected = adapter.getSelectedItem();
+        Log.d("My App", "selected " +selected.toString());
+        switch(item.getItemId()){
+            case R.id.menu_delete:
+                doDeleteAppt(selected);
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
+    private void doDeleteAppt(StudSideApptxLectName selected){
+        // get user info from SharedPreferences
+        User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
+
+        // get appt service instance
+        apptService = ApiUtils.getApptService();
+        Call<DeleteResponse> call = apptService.deleteAppt(user.getToken(), Integer.parseInt(selected.getStudID()));
+
+        call.enqueue(new Callback<DeleteResponse>() {
+            @Override
+            public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
+                if (response.code() == 200) {
+                    // 200 means OK
+                    displayAlert("Appointment successfully deleted");
+                    // update data in list view
+                    updateListView();
+                } else {
+                    displayAlert("Appointment failed to delete");
+                    Log.e("MyApp:", response.raw().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DeleteResponse> call, Throwable t) {
+                displayAlert("Error [" + t.getMessage() + "]");
+                Log.e("MyApp:", t.getMessage());
+            }
+        });
+    }
+    public void displayAlert(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do things
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
 
 }

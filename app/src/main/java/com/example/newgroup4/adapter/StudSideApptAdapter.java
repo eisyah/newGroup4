@@ -20,7 +20,15 @@ import java.util.Locale;
 public class StudSideApptAdapter extends RecyclerView.Adapter<StudSideApptAdapter.ViewHolder> implements Filterable {
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    public StudSideApptxLectName getSelectedItem() {
+        if(currentPos>=0 && mListData!=null && currentPos<mListData.size()) {
+            return mListData.get(currentPos);
+        }
+        return null;
+
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
 
         public TextView tvLectName;
         public TextView tvStatus;
@@ -33,6 +41,12 @@ public class StudSideApptAdapter extends RecyclerView.Adapter<StudSideApptAdapte
             tvStatus = (TextView) itemView.findViewById(R.id.tvStatus);
             tvLectID = (TextView) itemView.findViewById(R.id.tvLectID);
 
+            itemView.setOnLongClickListener(this);
+        }
+        @Override
+        public boolean onLongClick(View view) {
+            currentPos = getAdapterPosition(); // key point, record the position here
+            return false;
         }
 
     }
@@ -41,6 +55,7 @@ public class StudSideApptAdapter extends RecyclerView.Adapter<StudSideApptAdapte
 
     private List<StudSideApptxLectName> mListData;
     private Context mContext;
+    private static int currentPos;
 
     public StudSideApptAdapter(Context context, List<StudSideApptxLectName> listData){
         mListData = listData;
@@ -48,6 +63,8 @@ public class StudSideApptAdapter extends RecyclerView.Adapter<StudSideApptAdapte
 
         aListData = new ArrayList<>(mListData);
     }
+
+    private Context getmContext(){return mContext;}
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
@@ -101,6 +118,8 @@ public class StudSideApptAdapter extends RecyclerView.Adapter<StudSideApptAdapte
             results.values = filteredList;
             return results;
         }
+
+
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
