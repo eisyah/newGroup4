@@ -85,9 +85,12 @@ public class StudentAddAppointment extends AppCompatActivity {
         txtName = findViewById(R.id.txtName);
         txtLectName = findViewById(R.id.txtLectName);
         tvDate = findViewById(R.id.tvDate);
-        tvTime = findViewById(R.id.tvTime);
         txtReason = findViewById(R.id.txtReason);
         txtStatus = findViewById(R.id.txtStatus);
+
+        //time
+        Spinner tvTime = findViewById(R.id.tvTime);
+        String time = tvTime.getSelectedItem().toString();
 
 
         createdAt = new Date();
