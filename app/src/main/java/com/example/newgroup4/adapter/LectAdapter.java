@@ -19,7 +19,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> implements Filterable {
-
+    // add appointment
+    private RecyclerViewClickListener listener;
 
     // add 1
     private List<Lecturer> LlistData;
@@ -30,7 +31,7 @@ public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> im
     /**
      * Create ViewHolder class to bind list item view
      */
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView tvLectNameList;
 
@@ -38,12 +39,19 @@ public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> im
             super(itemView);
 
             tvLectNameList = (TextView) itemView.findViewById(R.id.tvLectNameList);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v, getAdapterPosition());
         }
     }
 
 
 
-    public LectAdapter(Context context, List<Lecturer> listData){
+    public LectAdapter(Context context, List<Lecturer> listData, RecyclerViewClickListener listener){
+        this.listener = listener;
         mListData = listData;
         mContext = context;
 
@@ -121,6 +129,10 @@ public class LectAdapter extends RecyclerView.Adapter<LectAdapter.ViewHolder> im
 
     };
 
+    // add appointment
+    public interface RecyclerViewClickListener{
+        void onClick(View v, int position);
+    }
 
 
 
