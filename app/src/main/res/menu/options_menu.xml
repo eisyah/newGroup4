@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- On action bar -->
-    <item android:id="@+id/add_person"
-        android:icon="@drawable/ic_baseline_list_24"
-        android:title="navigation"
+    <item android:id="@+id/logout"
+        android:icon="@drawable/ic_baseline_logout_24"
+        android:title="Logout"
         app:showAsAction="ifRoom"/>
 
     <!-- Overflow menu. No need for icon -->
     <item android:id="@+id/report_bugs"
         android:title="something" />
-    <item android:id="@+id/logout"
-        android:title="Logout"/>
+    <!--<item android:id="@+id/logout"
+        android:title="Logout"/> -->
 
 </menu>

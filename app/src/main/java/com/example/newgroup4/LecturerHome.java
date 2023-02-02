@@ -70,33 +70,6 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
         }
         setMonthView();
 
-        //menu stuff overflow
-
-
-        //logout stuff
-        // get user info from SharedPreferences
-        User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
-
-        // assign action to logout button
-        Button btnLogout = findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // clear the shared preferences
-                SharedPrefManager.getInstance(getApplicationContext()).logout();
-
-                // display message
-                Toast.makeText(getApplicationContext(),
-                        "You have successfully logged out.",
-                        Toast.LENGTH_LONG).show();
-
-                // forward to LoginActivity
-                finish();
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-
-            }
-        });
     }
 
     private void initWidgets()
@@ -202,9 +175,6 @@ public class LecturerHome extends AppCompatActivity implements CalendarAdapt.Oni
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),
-                                "User logout successfully.",
-                                Toast.LENGTH_SHORT).show();
 
                             // clear the shared preferences
                             SharedPrefManager.getInstance(getApplicationContext()).logout();
