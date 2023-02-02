@@ -12,16 +12,15 @@ import com.example.newgroup4.R;
 
 import java.util.ArrayList;
 
-public class CalendarAdapt extends RecyclerView.Adapter<CalViewHolder>
-{
-    private final ArrayList<String> daysOfMonth;
-    private final OnitemListener onitemListener;
+public class StuCalAdapt extends RecyclerView.Adapter<CalViewHolder>{
 
-    public CalendarAdapt(ArrayList<String> daysOfMonth, OnitemListener onitemListener) {
-        this.daysOfMonth = daysOfMonth;
+    private final ArrayList<String> daysOfMonthS;
+    private final CalendarAdapt.OnitemListener onitemListener;
+
+    public StuCalAdapt(ArrayList<String> daysOfMonth, CalendarAdapt.OnitemListener onitemListener) {
+        this.daysOfMonthS = daysOfMonth;
         this.onitemListener = onitemListener;
     }
-
 
     @NonNull
     @Override
@@ -35,37 +34,30 @@ public class CalendarAdapt extends RecyclerView.Adapter<CalViewHolder>
         view.setBackgroundColor(Color.LTGRAY);
 
         return new CalViewHolder(view, onitemListener);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CalViewHolder holder, int position) {
+
+        holder.dayOfMonth.setText(daysOfMonthS.get(position));
+        holder.appCount.setText("");
+        //holder.appCount.setText(Integer.toString(getItemCount()));
+        if(position==12) {
+            holder.appCount.setText(daysOfMonthS.get(position)+" app.");
+            holder.itemView.setBackgroundColor(Color.BLUE);}
+        // else
+        //    holder.appCount.setText("");
 
     }
 
     @Override
     public int getItemCount() {
-        return daysOfMonth.size();
-   }
+        return daysOfMonthS.size();
+    }
 
     public interface OnitemListener
     {
         void onItemClick(int position, String dayText);
-    }
-
-    //kira how much app every date
-    private void CollectEventsPerMonth(String Month, String Year)
-    {
-
-    }
-
-
-    //change each date to show colour change and num of appointment
-    @Override
-    public void onBindViewHolder(@NonNull CalViewHolder holder, int position) {
-        holder.dayOfMonth.setText(daysOfMonth.get(position));
-        holder.appCount.setText("");
-        //holder.appCount.setText(Integer.toString(getItemCount()));
-        if(position==12) {
-         holder.appCount.setText(daysOfMonth.get(position)+" app.");
-         holder.itemView.setBackgroundColor(Color.BLUE);}
-        // else
-        //    holder.appCount.setText("");
     }
 
 }

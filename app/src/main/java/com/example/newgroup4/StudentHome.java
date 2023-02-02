@@ -1,14 +1,20 @@
 package com.example.newgroup4;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -35,6 +41,30 @@ public class StudentHome extends AppCompatActivity {
     RecyclerView apptList;
     SearchView searchView;
     ImageButton imageButton;
+
+    //menu stuff
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // get the menu inflater
+        MenuInflater inflater = super.getMenuInflater();
+
+        // inflate the menu using our XML menu file id, options_menu
+        inflater.inflate(R.menu.options_menu, menu);
+
+        return true;
+    }
+    @Override //menu stuff
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.logout:
+                // user clicked report bugs menu item
+                // call method to display dialog box
+                LogoutNav(); // tukar sini - ecah's sn
+                return true;
+        }
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,27 +144,6 @@ public class StudentHome extends AppCompatActivity {
             }
         });
 
-        // assign action to logout button
-        Button btnLogout = findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // clear the shared preferences
-                SharedPrefManager.getInstance(getApplicationContext()).logout();
-
-                // display message
-                Toast.makeText(getApplicationContext(),
-                        "You have successfully logged out.",
-                        Toast.LENGTH_LONG).show();
-
-                // forward to LoginActivity
-                finish();
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-
-            }
-        });
-
     }
 
    /* private void filterList(String Text) {
@@ -152,5 +161,48 @@ public class StudentHome extends AppCompatActivity {
 
         }
     }*/
+
+    //logout on menu
+    private void LogoutNav() {
+        // prepare a dialog box with yes and no
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout?");
+        builder.setMessage("Are you sure do you want to logout?");
+
+        // prepare action listener for each button
+        builder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // clear the shared preferences
+                        SharedPrefManager.getInstance(getApplicationContext()).logout();
+
+                        // display message
+                        Toast.makeText(getApplicationContext(),
+                                "You have successfully logged out.",
+                                Toast.LENGTH_LONG).show();
+
+                        // forward to LoginActivity
+                        finish();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+                    }
+                });
+
+        builder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        // create the alert dialog and show to the user
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+
 
 }
