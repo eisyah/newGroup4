@@ -8,6 +8,7 @@
     android:layout_marginBottom="2dp"
     >
 
+
     <TextView
         android:id="@+id/tvLectNameList"
         android:layout_width="match_parent"
