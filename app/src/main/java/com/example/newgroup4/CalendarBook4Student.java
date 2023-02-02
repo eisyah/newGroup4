@@ -1,14 +1,14 @@
 package com.example.newgroup4;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newgroup4.adapter.CalendarAdapt;
 
@@ -27,6 +27,8 @@ public class CalendarBook4Student extends AppCompatActivity implements CalendarA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_book4_student);
+
+        //get appointmetns
 
         //calender stuff
         initWidgets();
@@ -49,7 +51,7 @@ public class CalendarBook4Student extends AppCompatActivity implements CalendarA
         monthYearText.setText(monthYearFromDate(selectedDate));
         ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
 
-        CalendarAdapt calendarAdapter = new CalendarAdapt(daysInMonth, this);
+        CalendarAdapt calendarAdapter = new CalendarAdapt(daysInMonth, this,null,null);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calRecyleView.setLayoutManager(layoutManager);
         calRecyleView.setAdapter(calendarAdapter);
@@ -129,6 +131,8 @@ public class CalendarBook4Student extends AppCompatActivity implements CalendarA
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
     }
+
+
 
 
 }
