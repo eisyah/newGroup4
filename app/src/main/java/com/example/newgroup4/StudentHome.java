@@ -82,27 +82,6 @@ public class StudentHome extends AppCompatActivity {
             }
         });
 
-        // get reference to the searchView
-        /*searchView = findViewById(R.id.searchView);
-        searchView.clearFocus();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filterList(newText);
-                return true;
-            }
-        });
-
-        public void setFilteredList(List<Lecturer> filterList){
-            this.apptList = filterList();
-            notifyDataSetChanged();
-        }*/
-
         // get reference to the RecyclerView apptList
         apptList = findViewById(R.id.apptList);
 
@@ -110,7 +89,7 @@ public class StudentHome extends AppCompatActivity {
         User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
 
         // get appt service instance
-        apptService = ApiUtils.getAppService();
+        apptService = ApiUtils.getApptService();
 
         // execute the call. send the user token when sending the query
         apptService.getLectNameByStudID(user.getToken(),user.getUsername()).enqueue(new Callback<List<StudSideApptxLectName>>() {
