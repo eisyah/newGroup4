@@ -63,10 +63,10 @@ public class newAppAdapt extends RecyclerView.Adapter<newAppAdapt.ViewHolder> {
         }
     }
 
-    private List<Appointment> mListData;   // list of book objects
+    private List<newApp> mListData;   // list of book objects
     private Context mContext;       // activity context
 
-    public newAppAdapt(Context context, List<Appointment> listData){
+    public newAppAdapt(Context context, List<newApp> listData){
         mListData = listData;
         mContext = context;
     }
@@ -90,7 +90,7 @@ public class newAppAdapt extends RecyclerView.Adapter<newAppAdapt.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // bind data to the view holder
-        Appointment m = mListData.get(position);
+        newApp m = mListData.get(position);
         holder.tvStuName.setText(m.getstuName());
         holder.tvTimeSlot.setText(m.getTime());
     }

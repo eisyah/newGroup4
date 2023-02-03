@@ -45,7 +45,7 @@ public class LectHome2 extends AppCompatActivity {
     ApptService apptService;
     Context context;
     RecyclerView apptList;
-    List<Appointment> appointmentListMain = new ArrayList<>();
+    List<newApp> appointmentListMain = new ArrayList<>();
     newAppAdapt adapter;
 
     //menu stuff
@@ -113,10 +113,10 @@ public class LectHome2 extends AppCompatActivity {
         // get book service instance
         apptService = ApiUtils.getApptService();
 
-        apptService.getMultAppointmentByLectID(user.getToken(),user.getUsername()).enqueue(new Callback<List<Appointment>>() {
+        apptService.getstudnamebylectID(user.getToken(),user.getUsername()).enqueue(new Callback<List<newApp>>() {
             @Override
-            public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
-                List<Appointment> app = response.body();
+            public void onResponse(Call<List<newApp>> call, Response<List<newApp>> response) {
+                List<newApp> app = response.body();
 
                 adapter = new newAppAdapt(context, app);
 
@@ -130,7 +130,7 @@ public class LectHome2 extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Appointment>> call, Throwable t) {
+            public void onFailure(Call<List<newApp>> call, Throwable t) {
                 Toast.makeText(context, "Error connecting to the server", Toast.LENGTH_LONG).show();
                 Log.e("MyApp:", t.getMessage());
             }
@@ -170,56 +170,11 @@ public class LectHome2 extends AppCompatActivity {
     }
 
     //getAppointment method
-    private List<Appointment> getAppointment() {
-
+    private List<newApp> getAppointment() {
 
         User user = SharedPrefManager.getInstance(this).getUser();
         ApptService apptService = ApiUtils.getApptService();
 
-        apptService.getMultAppointmentByLectID(user.getToken(),user.getUsername()).enqueue(new Callback<List<Appointment>>() {
-            @Override
-            public void onResponse(Call<List<Appointment>> call, Response<List<Appointment>> response) {
-                if (response.isSuccessful()) {
-                    List<Appointment> appointmentList = response.body();
-                    appointmentListMain.addAll(appointmentList);
-                    Toast.makeText(getApplicationContext(), "Appointment retrieved", Toast.LENGTH_LONG).show();
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Appointment>> call, Throwable t) {
-
-                ApptService apptService = ApiUtils.getApptService();
-
-                apptService.getSingAppointmentByLectID(user.getToken(),user.getUsername()).enqueue(new Callback<Appointment>() {
-                    @Override
-                    public void onResponse(Call<Appointment> call, Response<Appointment> response) {
-                        if (response.isSuccessful()) {
-                            Appointment appointment = response.body();
-                            appointmentListMain.add(appointment);
-                            Toast.makeText(getApplicationContext(), "Appointment retrieved", Toast.LENGTH_LONG).show();
-                        }
-
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<Appointment> call, Throwable t) {
-
-                        Toast.makeText(getApplicationContext(), "Appointment not retrieved", Toast.LENGTH_LONG).show();
-                        Log.e("MyApp:", t.getMessage());
-                    }
-                });
-
-                //Toast.makeText(getApplicationContext(), "Appointment not retrieved", Toast.LENGTH_LONG).show();
-                //Log.e("MyApp:", t.getMessage());
-            }
-        });
-
-
-        return appointmentListMain;
     }
 
 

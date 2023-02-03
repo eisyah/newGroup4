@@ -10,6 +10,8 @@ public class newApp {
     public String lectID;
     public String date;
     public String time;
+    public String reason;
+    public String status;
 
     public String getstuName() {
         return stuName;
@@ -47,7 +49,6 @@ public class newApp {
         return status;
     }
 
-    public String reason;
-    public String status;
+
 
 }

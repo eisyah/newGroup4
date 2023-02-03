@@ -3,6 +3,7 @@ package com.example.newgroup4.remote;
 import com.example.newgroup4.model.Appointment;
 import com.example.newgroup4.model.DeleteResponse;
 import com.example.newgroup4.model.StudSideApptxLectName;
+import com.example.newgroup4.model.newApp;
 
 import java.util.List;
 
@@ -45,4 +46,11 @@ public interface ApptService {
 
     @POST("api/appointment/delete/{id}")
     Call<DeleteResponse> deleteAppt(@Header("api-key") String apiKey, @Path("id") int id);
+
+    @GET("api/appointment/getstudnamebylectID")
+    Call <List<newApp>> getstudnamebylectID (@Header("api-key") String api_key, @Query("lectID_fk") String lectID);
+
+    @GET("api/appointment/getstudnamebylectID")
+    Call<newApp> getSingstudnamebylectID(@Header("api-key") String api_key, @Query("lectID_fk") String lectID);
+
 }

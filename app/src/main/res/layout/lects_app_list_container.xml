@@ -15,15 +15,16 @@
         android:orientation="vertical">
 
         <!-- Name -->
+
+        <!-- Phone -->
         <TextView
             android:id="@+id/nameTextViewID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Student name"
+            android:text="Amielia"
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!-- Phone -->
         <TextView
             android:id="@+id/TimeTextViewID"
             android:layout_width="match_parent"
