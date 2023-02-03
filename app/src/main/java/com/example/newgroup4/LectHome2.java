@@ -46,7 +46,7 @@ public class LectHome2 extends AppCompatActivity {
     Context context;
     RecyclerView apptList;
     List<newApp> appointmentListMain = new ArrayList<>();
-    newAppAdapt adapter;
+    public newAppAdapt adapter;
 
     //menu stuff
     @Override
@@ -174,7 +174,7 @@ public class LectHome2 extends AppCompatActivity {
 
         User user = SharedPrefManager.getInstance(this).getUser();
         ApptService apptService = ApiUtils.getApptService();
-
+        return  null;
     }
 
 

@@ -199,7 +199,7 @@ public class StudentAddAppointment extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String created_at = sdf.format(createdAt);
 
-        Appointment a = Appointment(0, name, lectName, created_at, test_time, reason, status);
+        Appointment a = Appointment(0, 0, 0, created_at, test_time, reason, status);
         //get user info from SharedPreferences
         User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
 
